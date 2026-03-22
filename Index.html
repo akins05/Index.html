@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Surprise</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color:white;
+  text-align:center;
+  background: url("https://i.postimg.cc/8zYBpqw0/1cf521a7-afc7-4328-a733-a21a15e8e26b.jpg") center/cover no-repeat;
+}
+
+.overlay{
+  background: rgba(0,0,0,0.6);
+  min-height:100vh;
+  padding:20px;
+}
+
+.card{
+  max-width:500px;
+  margin:auto;
+  margin-top:20%;
+  background: rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:20px;
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:20px;
+  margin-top:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.primary{
+  background:#ff4d8d;
+  color:white;
+}
+
+img{
+  width:100%;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="card" id="start">
+  <h2>Birthday Surprise 🎉</h2>
+  <p>Tap to open</p>
+  <button class="primary" id="openBtn">Open</button>
+</div>
+
+<div class="card hidden" id="main">
+  <h2>Happy Birthday Mom ❤️</h2>
+
+  <img id="photo" src="https://i.postimg.cc/8zYBpqw0/1cf521a7-afc7-4328-a733-a21a15e8e26b.jpg">
+
+  <p id="text"></p>
+</div>
+
+</div>
+
+<script>
+
+const PHOTOS = [
+"https://i.postimg.cc/8zYBpqw0/1cf521a7-afc7-4328-a733-a21a15e8e26b.jpg",
+"https://i.postimg.cc/vZKLYpXt/44fbac8e-1c1c-4ebb-9d49-8c89e9b51668.jpg",
+"https://i.postimg.cc/t4ctqLDk/742fd580-2cba-4f8c-9c7a-8f8a729e5024.jpg",
+"https://i.postimg.cc/vZKLYpXz/813f484b-d72f-4802-9f6a-62f170aeefe8.jpg",
+"https://i.postimg.cc/XYPcjTxg/9607fafe-d5e2-4fe9-a843-cd522e52c1db.jpg"
+];
+
+let index = 0;
+
+const message = `Happy Birthday Mom,
+
+Thank you for loving me, praying for me, and standing by me through everything.
+You are the heart of our home, and your sacrifices mean more than I can ever explain.
+
+Today I celebrate you, your strength, your kindness, your beautiful smile, and your love.
+May God bless you with long life, good health, peace of mind, and joy that will never finish.
+
+I love you more than words can say.
+Happy Birthday, Mom.`;
+
+document.getElementById("openBtn").onclick = function(){
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("main").classList.remove("hidden");
+  typeText();
+  startSlideshow();
+};
+
+function typeText(){
+  let i = 0;
+  let speed = 20;
+  function typing(){
+    if(i < message.length){
+      document.getElementById("text").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+function startSlideshow(){
+  setInterval(()=>{
+    index = (index + 1) % PHOTOS.length;
+    document.getElementById("photo").src = PHOTOS[index];
+  }, 3000);
+}
+
+</script>
+
+</body>
+</html>
+
